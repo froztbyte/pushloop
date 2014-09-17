@@ -37,3 +37,8 @@ Assumptions
   * That you use with this with the understanding it's a cheap imitation plastic daemon
   * Settings are at `${HOME}/.pushloop`
   * That you have a modicum of shell skills (because this will probably break)
+
+Name
+----
+
+Get out and push
