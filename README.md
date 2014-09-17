@@ -23,6 +23,9 @@ means `while read line`.
 Settings
 --------
 
+Export these
+
+  * `MATCH` = the match text
   * `ACTION` = the script you want to run
   * `TIMEOUT` = haha, funny
   * `INPATH` = the fifo to read

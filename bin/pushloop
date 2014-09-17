@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# load settings
+[ -e ${HOME}/.pushloop ] && source ${HOME}/.pushloop || exit 1
+
+# https://stackoverflow.com/a/246128
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+function screenify {
+  # presume running
+  screen -list pushloop 2>&1 && screen -X -S pushloop kill
+  screen -dmS pushloop ${DIR}/pushloop
+}
+
+function cleanup {
+  [ -e ${INPATH} ] && rm ${INPATH}
+}
+
+function main {
+  cleanup
+  mkfifo ${INPATH}
+  tail -F ${INPATH} | while read line
+  do
+    if echo $line | grep "${MATCH}">/dev/null; then
+      ${ACTION}
+    fi
+  done
+}
+
+case $TERM in
+  screen*)
+    main
+  ;;
+
+  *)
+    screenify
+  ;;
+esac
+
