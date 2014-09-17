@@ -23,9 +23,9 @@ means `while read line`.
 Settings
 --------
 
-`ACTION` = the script you want to run
-`TIMEOUT` = haha, funny
-`INPATH` = the fifo to read
+  * `ACTION` = the script you want to run
+  * `TIMEOUT` = haha, funny
+  * `INPATH` = the fifo to read
 
 Assumptions
 -----------
