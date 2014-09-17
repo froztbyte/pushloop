@@ -19,3 +19,18 @@ figure it out now.
 It listens on a FIFO, waits for a match condition (grep) and then runs the
 script you specify. And where that says "listens", it really only 
 means `while read line`.
+
+Settings
+--------
+
+`ACTION` = the script you want to run
+`TIMEOUT` = haha, funny
+`INPATH` = the fifo to read
+
+Assumptions
+-----------
+
+  * That you have bash
+  * That you use with this with the understanding it's a cheap imitation plastic daemon
+  * Settings are at ${HOME}/.pushloop
+  * That you have a modicum of shell skills (because this will probably break)
